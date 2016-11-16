@@ -17,6 +17,7 @@ class Counter extends Component {
         <button onClick={incrementIfOdd}>Increment if odd</button>
         {' '}
         <button onClick={() => incrementAsync()}>Increment async</button>
+        <li><a href="/basket">Basket</a></li>
       </p>
     )
   }
