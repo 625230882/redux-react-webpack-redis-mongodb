@@ -33,7 +33,6 @@ class AppleBasket extends React.Component {
                 <div className="btn-div">
                     <button onClick={actions.addApple}>add-to-db</button>
                 </div>
-
                 <li><a href="/app">App</a></li>
           </div>
        );

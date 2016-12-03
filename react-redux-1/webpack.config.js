@@ -34,7 +34,10 @@ module.exports = {
           test: /\.css$/, 
           loaders: ['style', 'css'],
             include: path.resolve(__dirname, 'styles')
-    }
+      },
+      {   test: /\.(png|jpg)$/, 
+          loader: 'url-loader?limit=100000' 
+      }
     ]
   }
 }

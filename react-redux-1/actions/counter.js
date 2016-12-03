@@ -12,6 +12,78 @@ export function decrement() {
     type: DECREMENT_COUNTER
   }
 }
+
+export function addPic(file) {
+  //console.log(file);
+  return {
+    type: 'ADD_PICTURE',
+    file: file
+  }
+}
+
+export function addText(text) {
+  //console.log(text);
+  return {
+    type: 'ADD_TEXT',
+    text: text
+  }
+}
+
+
+export function deletePic(payload){
+    return {
+      type: 'DELETE_PIC',
+      payload: payload
+    }
+}
+
+export function addPics(file){
+
+    var data = {}
+    data.img = file[0];
+    var form_data = new FormData();
+    form_data.append('img', file[0]);
+    return (dispatch, getState) => {
+      dispatch(addPic(file[0]));
+    }
+}
+
+export function addContent(text){
+  return {
+    type: 'ADD_CONTENT',
+    text: text
+  }
+}
+
+
+export function upload(){
+
+  return (dispatch, getState) => {
+    var form_data = new FormData();
+    var value = getState().basket;
+    value.pics.map(pic =>{
+      form_data.append('img', pic.file);
+    })
+   // form_data.append('img', value.pics[0].file);
+    form_data.append('title', value.title);
+    form_data.append('content', value.content);
+    console.log(value)
+      $.ajax({
+              url: '/addPic',
+              method: 'post',
+              data: form_data,
+              contentType: false,
+              processData: false
+          }).done(data => {
+              //console.log(data);
+              //dispatch(addPic(file[0]));
+
+          }).fail( xhr => {
+            console.log(xhr);
+          })
+  }
+}
+
 //导出奇数加一的方法，该方法返回一个方法，包含dispatch和getState两个参数，dispatch用于执行action的方法，getState返回state
 export function incrementIfOdd() {
   return (dispatch, getState) => {

@@ -10,6 +10,8 @@ let actions = {
             method: 'post',
             data: getState().appleBasket
         }).done(data => {
+            console.log('data');
+            console.log(data);
             //发射普通 action
             dispatch(actions.cleanPickApple());
         }).fail( xhr => {
@@ -24,13 +26,7 @@ let actions = {
 
     //注意这里需要 () => ... , 不然 pickAppleAction 不是一个actionCreator, 而是一个thunk
     pickApple: () => (dispatch, getState) => {
-        //console.log(getState())
-        //如果正在摘苹果，则结束这个thunk, 不执行摘苹果
-        // if(getState().isPicking)
-        //     return;
 
-        //通知开始摘苹果
-        //dispatch(actions.beginPickApple());
         var id = getState().newAppleId;
         //发送摘苹果请求
         try {
